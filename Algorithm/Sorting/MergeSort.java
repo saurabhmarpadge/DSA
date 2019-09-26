@@ -1,5 +1,3 @@
-package com.smallerelement;
-
 import java.io.*;
 import java.util.*;
 
