@@ -12,3 +12,27 @@
     delete_value
     get_successor // returns next-highest value in tree after given value, -1 if none
 */
+
+public class BinarySearchTree {
+    Node root;
+    public Node insertInBST(Node root, int item){
+        Node node = new Node(item);
+        if(root==null){
+            root = node;
+        } else if(root.item>item){
+            root.left = insertInBST(root.left,item);
+        } else {
+            root.right = insertInBST(root.right,item);
+        }
+        return root;
+    }
+}
+
+class Node {
+    int item;
+    Node left;
+    Node right;
+    Node(int item){
+        this.item = item;
+    }
+}
