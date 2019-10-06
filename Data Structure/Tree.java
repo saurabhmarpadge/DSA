@@ -26,6 +26,33 @@ public class Tree {
 
       inOrder(a);
   }
+    
+  public static ArrayList<ArrayList<Integer>> levelOrder(Node head){
+      ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+      Queue<Node> queue = new LinkedList<>();
+      queue.offer(head);
+      queue.offer(null);
+      ArrayList<Integer> curr = new ArrayList<>();
+      while(!queue.isEmpty()){
+          Node temp = queue.poll();
+          if(temp!=null){
+              curr.add(temp.item);
+              if(temp.left!=null){
+                  queue.offer(temp.left);
+              }
+              if(temp.right!=null){
+                  queue.offer(temp.right);
+              }
+          } else {
+              result.add(new ArrayList<>(curr));
+              curr.clear();
+              if(!queue.isEmpty()){
+                  queue.offer(null);
+              }
+          }
+      }
+      return result;
+  }
 
   public static void inOrder(Node node){
       if(node==null){
