@@ -1,18 +1,25 @@
 /*
 basic tree construction
-traversal
+-traversal
 manipulation algorithms
 BFS(breadth-first search) and DFS(depth-first search) (video)
     BFS notes:
-        level order (BFS, using queue)
+        -level order (BFS, using queue)
         time complexity: O(n)
         space complexity: best: O(1), worst: O(n/2)=O(n)
-    DFS notes:
+    DFS notes (Implement Recursively):
+        time complexity: O(n)
+        space complexity: best: O(log n) - avg. height of tree worst: O(n)
+        -inorder (DFS: left, self, right)
+        -postorder (DFS: left, right, self)
+        -preorder (DFS: self, left, right)
+    DFS notes (Implement Iteratively):
         time complexity: O(n)
         space complexity: best: O(log n) - avg. height of tree worst: O(n)
         inorder (DFS: left, self, right)
         postorder (DFS: left, right, self)
         preorder (DFS: self, left, right)
+
 */
 
 public class Tree {
@@ -26,7 +33,7 @@ public class Tree {
 
       inOrder(a);
   }
-    
+
   public static ArrayList<ArrayList<Integer>> levelOrder(Node head){
       ArrayList<ArrayList<Integer>> result = new ArrayList<>();
       Queue<Node> queue = new LinkedList<>();

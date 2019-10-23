@@ -1,4 +1,12 @@
 /*
+Implement Stack with Array
+-push(x)
+-pop()
+-peek()
+-size()
+-isEmpty()
+-isFull()
+Implement Stack with LinkedList
 -push(x)
 -pop()
 -peek()
@@ -12,7 +20,7 @@ public class Stack {
 
   }
 
-    public class StackArray{
+    class StackArray{
         int size;
         int[] sArray;
         int top;
@@ -56,7 +64,7 @@ public class Stack {
         }
     }
 
-    public class StackArray{
+    class StackLinkedList{
         class Node{
             int item;
             Node next;

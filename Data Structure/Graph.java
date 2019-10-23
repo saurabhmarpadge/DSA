@@ -2,11 +2,11 @@
 I'll implement:
 
  DFS with adjacency list (recursive)
- DFS with adjacency list (iterative with stack)
+ -DFS with adjacency list (iterative with stack)
  DFS with adjacency matrix (recursive)
- DFS with adjacency matrix (iterative with stack)
- BFS with adjacency list
- BFS with adjacency matrix
+ -DFS with adjacency matrix (iterative with stack)
+ -BFS with adjacency list
+ -BFS with adjacency matrix
  single-source shortest path (Dijkstra)
  minimum spanning tree
 DFS-based algorithms (see Aduni videos above):
@@ -18,11 +18,11 @@ DFS-based algorithms (see Aduni videos above):
 */
 
 public class Graph {
- 
+
     public static void main(String[] args){
-        
+
     }
-    
+
 }
 
 class GraphAdjMatrix{
@@ -32,17 +32,17 @@ class GraphAdjMatrix{
         this.nodes = nodes;
         this.adjMat = new int[nodes][nodes];
     }
-    
+
     public insertEdge(int src, int dest){
         this.adjMat[src][dest] = 1;
         this.adjMat[dest][src] = 1;
     }
-    
+
     public deleteEdge(int src, int dest){
         this.adjMat[src][dest] = 0;
         this.adjMat[dest][src] = 0;
     }
-    
+
     public bfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Queue<Integer> queue = new LinkedList<>();
@@ -57,7 +57,7 @@ class GraphAdjMatrix{
             }
         }
     }
-    
+
     public dfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Stack<Integer> stack =new Stack<>();
@@ -86,17 +86,17 @@ class GraphAdjList{
             adjList[idx] = new LinkedList<>();
         }
     }
-    
+
     public insertEdge(int src, int dest){
         this.adjList[src].add(dest);
         this.adjList[dest].add(src);
     }
-    
+
     public deleteEdge(int src, int dest){
         this.adjList[src].remove(dest);
         this.adjList[dest].remove(src);
     }
-    
+
     public bfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Queue<Integer> queue = new LinkedList<>();
@@ -111,7 +111,7 @@ class GraphAdjList{
             }
         }
     }
-    
+
     public dfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Stack<Integer> stack =new Stack<>();
