@@ -182,11 +182,11 @@ public class LinkedList {
         }
 
         public boolean remove(int data) {
-
+            return false;
         }
 
         public int get(int index) {
-
+            return -1;
         }
     }
 
