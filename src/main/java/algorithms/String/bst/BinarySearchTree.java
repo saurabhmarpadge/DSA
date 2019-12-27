@@ -1,4 +1,4 @@
-/*
+package algorithms.String.bst;/*
  Implement:
     -insertInBST // insert value into tree
     get_node_count // get count of values stored
@@ -18,7 +18,7 @@ public class BinarySearchTree {
 
     public Node insertInBST(Node root, int item){
         if(root==null){
-            root = new Node(item);;
+            root = new Node(item);
         } else if(root.item>item){
             root.left = insertInBST(root.left,item);
         } else {
@@ -108,7 +108,7 @@ class Node {
     int item;
     Node left;
     Node right;
-    Node(int item){
+    public Node(int item){
         this.item = item;
     }
 }

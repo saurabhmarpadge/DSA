@@ -1,4 +1,4 @@
-/*
+package algorithms;/*
 Implement:
     -Binary search (on sorted array of integers)
     -Binary search using recursion

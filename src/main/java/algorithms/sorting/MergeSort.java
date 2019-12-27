@@ -1,5 +1,7 @@
+package algorithms.sorting;
+
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
 
 public class MergeSort {
     public static void main(String[] args)throws Exception{

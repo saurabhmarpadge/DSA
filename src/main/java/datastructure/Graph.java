@@ -62,6 +62,10 @@ class GraphAdjMatrix{
         }
     }
 
+    private int[] getNonVisitedNeighbours(int node) {
+        return new int[0];
+    }
+
     public void dfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Stack<Integer> stack =new Stack<>();
@@ -76,6 +80,10 @@ class GraphAdjMatrix{
                 stack.pop();
             }
         }
+    }
+
+    private int getNonVisitedNeighbour(int node) {
+        return 0;
     }
 }
 
@@ -116,6 +124,10 @@ class GraphAdjList{
         }
     }
 
+    private int[] getNonVisitedNeighbours(int node) {
+        return null;
+    }
+
     public void dfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Stack<Integer> stack =new Stack<>();
@@ -130,6 +142,10 @@ class GraphAdjList{
                 stack.pop();
             }
         }
+    }
+
+    private int getNonVisitedNeighbour(int node) {
+        return 0;
     }
 }
 
