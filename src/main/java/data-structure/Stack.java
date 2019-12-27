@@ -37,7 +37,7 @@ public class Stack {
             return size;
         }
 
-        public int peek(){
+        public int peek() throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
@@ -48,7 +48,7 @@ public class Stack {
             return top+1==size;
         }
 
-        public int pop(){
+        public int pop()throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
@@ -56,7 +56,7 @@ public class Stack {
         }
 
 
-        public void push(int item){
+        public void push(int item)throws Exception{
             if(isFull()){
                 throw new Exception();
             }
@@ -77,7 +77,7 @@ public class Stack {
         Node head;
         int capacity;
         int size;
-        StackArray(int capacity){
+        StackLinkedList(int capacity){
             this.head = null;
             this.size = 0;
             this.capacity = capacity;
@@ -91,7 +91,7 @@ public class Stack {
             return size;
         }
 
-        public int peek(){
+        public int peek() throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
@@ -102,7 +102,7 @@ public class Stack {
             return size==capacity;
         }
 
-        public int pop(){
+        public int pop() throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
@@ -113,7 +113,7 @@ public class Stack {
         }
 
 
-        public void push(int item){
+        public void push(int item) throws Exception{
             if(isFull()){
                 throw new Exception();
             }

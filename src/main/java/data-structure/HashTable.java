@@ -8,19 +8,19 @@ implement with array using linear probing
 */
 
 public class HashTable {
-    HashItem hashItem;
+    HashItem[] hashItem;
     int capacity;
     HashTable(int capacity){
         this.capacity = capacity;
-        hashItem = int[capacity];
+        hashItem = new HashItem[capacity];
     }
     public static void main(String[] args){
 
     }
 
-    public int get(int key){
-        int hashKeyIndex = hashFunction(key,this.capcity);
-        if(!containsKey(hashKey)){
+    public HashItem get(int key){
+        int hashKeyIndex = hashFunction(key);
+        if(!containsKey(key)){
             return null;
         }
         while(hashItem[hashKeyIndex]!=null && hashItem[hashKeyIndex].getKey()!=key){
@@ -30,7 +30,7 @@ public class HashTable {
     }
 
     public void put(int key, int value){
-        int hashKeyIndex = hashFunction(key,this.capcity);
+        int hashKeyIndex = hashFunction(key);
         while(hashItem[hashKeyIndex]!=null && hashItem[hashKeyIndex].getKey()!=key){
             hashKeyIndex = (hashKeyIndex + 1 ) % this.capacity;
         }
@@ -42,7 +42,7 @@ public class HashTable {
     }
 
     public void remove(int key){
-        int hashKeyIndex = hashFunction(key,this.capcity);
+        int hashKeyIndex = hashFunction(key);
         while(hashItem[hashKeyIndex]!=null && hashItem[hashKeyIndex].getKey()!=key){
             hashKeyIndex = (hashKeyIndex + 1 ) % this.capacity;
         }
@@ -52,11 +52,11 @@ public class HashTable {
     }
 
     public boolean containsKey(int key){
-       int hashKeyIndex = hashFunction(key,this.capcity);
+       int hashKeyIndex = hashFunction(key);
         while(hashItem[hashKeyIndex]!=null && hashItem[hashKeyIndex].getKey()!=key){
             hashKeyIndex = (hashKeyIndex + 1 ) % this.capacity;
         }
-        return hashItem[hashKeyIndex]!=null&&hashItem[hashKeyIndex].getKey()==key);
+        return hashItem[hashKeyIndex]!=null&&hashItem[hashKeyIndex].getKey()==key;
     }
 
     public int hashFunction(int key){
@@ -72,5 +72,8 @@ class HashItem{
     HashItem(int key, int value){
         this.key = key;
         this.value = value;
+    }
+    public int getKey(){
+        return key;
     }
 }

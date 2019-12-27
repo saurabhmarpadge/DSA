@@ -17,6 +17,10 @@ DFS-based algorithms (see Aduni videos above):
  check for bipartite graph
 */
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class Graph {
 
     public static void main(String[] args){
@@ -33,32 +37,32 @@ class GraphAdjMatrix{
         this.adjMat = new int[nodes][nodes];
     }
 
-    public insertEdge(int src, int dest){
+    public void insertEdge(int src, int dest){
         this.adjMat[src][dest] = 1;
         this.adjMat[dest][src] = 1;
     }
 
-    public deleteEdge(int src, int dest){
+    public void deleteEdge(int src, int dest){
         this.adjMat[src][dest] = 0;
         this.adjMat[dest][src] = 0;
     }
 
-    public bfsTravserse(){
+    public void bfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Queue<Integer> queue = new LinkedList<>();
-        queue.push(this.nodes-1);
+        queue.offer(this.nodes-1);
         while(!queue.isEmpty()){
             int node = queue.poll();
             if(!visited[node]){
                 visited[node] = true;
                 for(int neighbours:getNonVisitedNeighbours(node)){
-                    queue.add();
+                    queue.add(neighbours);
                 }
             }
         }
     }
 
-    public dfsTravserse(){
+    public void dfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Stack<Integer> stack =new Stack<>();
         stack.push(this.nodes-1);
@@ -81,38 +85,38 @@ class GraphAdjList{
     int nodes;
     GraphAdjList(int nodes){
         this.nodes = nodes;
-        this.adjList[] = new LinkedList[this.nodes];
+        this.adjList = new LinkedList[this.nodes];
         for(int idx=0;idx<this.nodes;idx++){
             adjList[idx] = new LinkedList<>();
         }
     }
 
-    public insertEdge(int src, int dest){
+    public void insertEdge(int src, int dest){
         this.adjList[src].add(dest);
         this.adjList[dest].add(src);
     }
 
-    public deleteEdge(int src, int dest){
+    public void deleteEdge(int src, int dest){
         this.adjList[src].remove(dest);
         this.adjList[dest].remove(src);
     }
 
-    public bfsTravserse(){
+    public void bfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Queue<Integer> queue = new LinkedList<>();
-        queue.push(this.nodes-1);
+        queue.offer(this.nodes-1);
         while(!queue.isEmpty()){
             int node = queue.poll();
             if(!visited[node]){
                 visited[node] = true;
                 for(int neighbours:getNonVisitedNeighbours(node)){
-                    queue.add();
+                    queue.add(neighbours);
                 }
             }
         }
     }
 
-    public dfsTravserse(){
+    public void dfsTravserse(){
         boolean[] visited = new boolean[this.nodes];
         Stack<Integer> stack =new Stack<>();
         stack.push(this.nodes-1);

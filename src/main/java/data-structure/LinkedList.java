@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 /*
 -size() - returns number of data elements in list
 -empty() - bool returns true if empty
@@ -27,10 +29,16 @@ public class LinkedList {
             int data;
             Node next;
             Node prev;
+
             Node(Node prev, int data, Node next){
                 this.prev = prev;
                 this.data = data;
                 this.next = next;
+            }
+            Node(int data){
+                this.prev = null;
+                this.data = data;
+                this.next = null;
             }
         }
 
@@ -58,19 +66,19 @@ public class LinkedList {
             this.size++;
         }
 
-        private void linkFirst(Node node) {
+        private void linkFirst(int data) {
             Node newNode = new Node(null,data,head);
             if(head==null){
-                this.tail = new Node();
+                this.tail = newNode;
             }
             this.head = newNode;
             this.size++;
         }
 
-        private void linkLast(Node node) {
+        private void linkLast(int data) {
             Node newNode = new Node(tail,data,null);
             if(tail==null){
-                this.head = new Node();
+                this.head = newNode;
             }
             this.tail = newNode;
             this.size++;
@@ -178,7 +186,7 @@ public class LinkedList {
         }
 
         public void add(int data){
-            linkLast(data)
+            linkLast(data);
         }
 
         public boolean remove(int data) {
