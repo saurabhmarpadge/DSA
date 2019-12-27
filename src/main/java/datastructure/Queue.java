@@ -1,28 +1,30 @@
 /*
-Implement using linked-list, with tail pointer:
--enqueue(value) - adds value at position at tail
--dequeue() - returns value and removes least recently added element (front)
--empty()
-Implement using fixed-sized array:
--enqueue(value) - adds item at end of available storage
--dequeue() - returns value and removes least recently added element
--empty()
--full()
+    Implement using linked-list, with tail pointer:
+        -enqueue(value) - adds value at position at tail
+        -dequeue() - returns value and removes least recently added element (front)
+        -empty()
+    Implement using fixed-sized array:
+        -enqueue(value) - adds item at end of available storage
+        -dequeue() - returns value and removes least recently added element
+        -empty()
+        -full()
 */
+
+package datastructure;
 
 public class Queue {
   public static void main(String[] args){
 
   }
-class Node{
-    int val;
+class Node<T>{
+    T val;
     Node next;
-    Node(int item){
+    Node(T item){
         this.val = item;
         next = null;
     }
 }
- class QueueLinkedList{
+ class QueueLinkedList<T>{
       int size;
       int capacity;
       Node front;
@@ -49,11 +51,11 @@ class Node{
           size++;
       }
 
-      public int dequeue() throws Exception{
+      public T dequeue() throws Exception{
           if(isEmpty()){
               throw new Exception();
           }
-          int result = front.val;
+          T result = (T) front.val;
           if(front==rear){
               front = null;
               rear = null;
@@ -73,20 +75,20 @@ class Node{
       }
   }
 
-  public class QueueArray{
+  public class QueueArray<T>{
       int size;
       int capacity;
-      int[] qArray;
+      Object[] qArray;
       int front;
       int rear;
       QueueArray(int capacity){
           this.capacity = capacity;
           front = rear = -1;
-          qArray = new int[capacity];
+          qArray = new Object[capacity];
           size=0;
       }
 
-      void enqueue(int item)  throws Exception{
+      void enqueue(T item)  throws Exception{
           if(isFull()){
               throw new Exception();
           }
@@ -95,18 +97,18 @@ class Node{
               rear = 0;
               qArray[rear]=item;
           } else {
-              rear = (rear+1)%capacity;
+              rear = (rear%this.capacity+1%this.capacity)%this.capacity;
               qArray[rear]=item;
           }
           size++;
       }
 
-      int dequeue()  throws Exception{
+      T dequeue()  throws Exception{
           if(isEmpty()){
               throw new Exception();
           }
-          int result = qArray[front];
-          front = (front+1)%this.capacity;
+          T result = (T) qArray[front];
+          front = (front%this.capacity+1%this.capacity)%this.capacity;
           size--;
           return result;
       }

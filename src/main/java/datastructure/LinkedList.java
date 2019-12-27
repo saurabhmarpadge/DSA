@@ -1,23 +1,23 @@
+/*
+    -size() - returns number of data elements in list
+    -empty() - bool returns true if empty
+    value_at(index) - returns the value of the nth item (starting at 0 for first)
+    -push_front(value) - adds an item to the front of the list
+    -pop_front() - remove front item and return its value
+    -push_back(value) - adds an item at the end
+    -pop_back() - removes end item and returns its value
+    -front() - get value of front item
+    -back() - get value of end item
+    -insert(index, value) - insert value at index, so current item at that index is pointed to by new item at index
+    -erase(index) - removes node at given index
+    -value_n_from_end(n) - returns the value of the node at nth position from the end of the list
+    -reverse() - reverses the list
+    -remove_value(value) - removes the first item in the list with this value
+*/
 package datastructure;
 
 import java.util.NoSuchElementException;
 
-/*
--size() - returns number of data elements in list
--empty() - bool returns true if empty
-value_at(index) - returns the value of the nth item (starting at 0 for first)
--push_front(value) - adds an item to the front of the list
--pop_front() - remove front item and return its value
--push_back(value) - adds an item at the end
--pop_back() - removes end item and returns its value
--front() - get value of front item
--back() - get value of end item
--insert(index, value) - insert value at index, so current item at that index is pointed to by new item at index
--erase(index) - removes node at given index
-value_n_from_end(n) - returns the value of the node at nth position from the end of the list
-reverse() - reverses the list
--remove_value(value) - removes the first item in the list with this value
-*/
 public class LinkedList {
     public static void main(String[] args){
 
@@ -363,28 +363,27 @@ public class LinkedList {
             this.head = pred;
         }
 
-        public void reverse(Node node) {
-            if(node.next==null){
-                this.head=node;
-                return;
+        public Node reverse(Node node) {
+            if(node==null||node.next==null){
+               return node;
             }
-            reverse(node.next);
-            Node last = node.next;
-            last.next = node;
-            head.next = null;
+            Node newNode = reverse(node.next);
+            node.next.next = node;
+            node.next=null;
+            return newNode;
         }
 
         void removeValue(int target){
-            Node prev = null;
+            Node pred = null;
             Node curr = this.head;
             while(curr.next!=null){
                 if(curr.data==target){
                     break;
                 }
-                prev = curr;
+                pred = curr;
                 curr = curr.next;
             }
-            prev.next = prev.next.next;
+            pred.next = pred.next.next;
         }
 
         void removeFirst(){
@@ -412,7 +411,7 @@ public class LinkedList {
                 prev = curr;
                 curr = curr.next;
             }
-            prev = null;
+            prev.next = null;
         }
 
         void removeAt(int position){

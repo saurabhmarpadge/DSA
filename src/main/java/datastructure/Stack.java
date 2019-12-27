@@ -1,32 +1,34 @@
 /*
-Implement Stack with Array
--push(x)
--pop()
--peek()
--size()
--isEmpty()
--isFull()
-Implement Stack with LinkedList
--push(x)
--pop()
--peek()
--size()
--isEmpty()
--isFull()
+    Implement Stack with Array
+    -push(x)
+    -pop()
+    -peek()
+    -size()
+    -isEmpty()
+    -isFull()
+    Implement Stack with LinkedList
+    -push(x)
+    -pop()
+    -peek()
+    -size()
+    -isEmpty()
+    -isFull()
 */
+
+package datastructure;
 
 public class Stack {
   public static void main(String[] args){
 
   }
 
-    class StackArray{
+    class StackArray<T>{
         int size;
-        int[] sArray;
+        Object[] sArray;
         int top;
         StackArray(int size){
             this.size = size;
-            sArray = new int[size];
+            sArray = new Object[size];
         }
 
         public boolean isEmpty(){
@@ -37,22 +39,22 @@ public class Stack {
             return size;
         }
 
-        public int peek() throws Exception{
+        public T peek() throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
-            return sArray[top];
+            return (T) sArray[top];
         }
 
         public boolean isFull(){
             return top+1==size;
         }
 
-        public int pop()throws Exception{
+        public T pop()throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
-            return sArray[top--];
+            return (T) sArray[top--];
         }
 
 
@@ -64,11 +66,11 @@ public class Stack {
         }
     }
 
-    class StackLinkedList{
-        class Node{
-            int item;
+    class StackLinkedList<T>{
+        class Node<T>{
+            T item;
             Node next;
-            Node(int item){
+            Node(T item){
                 this.item = item;
                 this.next = null;
             }
@@ -91,29 +93,29 @@ public class Stack {
             return size;
         }
 
-        public int peek() throws Exception{
+        public T peek() throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
-            return head.item;
+            return (T) head.item;
         }
 
         public boolean isFull(){
             return size==capacity;
         }
 
-        public int pop() throws Exception{
+        public T pop() throws Exception{
             if(isEmpty()){
                 throw new Exception();
             }
             Node node = head;
             head = head.next;
             size--;
-            return node.item;
+            return (T) node.item;
         }
 
 
-        public void push(int item) throws Exception{
+        public void push(T item) throws Exception{
             if(isFull()){
                 throw new Exception();
             }
