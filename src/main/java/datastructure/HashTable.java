@@ -1,3 +1,4 @@
+package datastructure;
 /*
 implement with array using linear probing
 -hashFunction(k, m) - m is size of hash table
@@ -7,7 +8,7 @@ implement with array using linear probing
 -remove(key)
 */
 
-public class HashTable {
+public class HashTable<K,V> {
     HashItem[] hashItem;
     int capacity;
     HashTable(int capacity){
@@ -18,7 +19,7 @@ public class HashTable {
 
     }
 
-    public HashItem get(int key){
+    public HashItem get(K key){
         int hashKeyIndex = hashFunction(key);
         if(!containsKey(key)){
             return null;
@@ -29,7 +30,7 @@ public class HashTable {
         return this.hashItem[hashKeyIndex];
     }
 
-    public void put(int key, int value){
+    public void put(K key, V value){
         int hashKeyIndex = hashFunction(key);
         while(hashItem[hashKeyIndex]!=null && hashItem[hashKeyIndex].getKey()!=key){
             hashKeyIndex = (hashKeyIndex + 1 ) % this.capacity;
@@ -41,7 +42,7 @@ public class HashTable {
         hashItem[hashKeyIndex] = new HashItem(key,value);
     }
 
-    public void remove(int key){
+    public void remove(K key){
         int hashKeyIndex = hashFunction(key);
         while(hashItem[hashKeyIndex]!=null && hashItem[hashKeyIndex].getKey()!=key){
             hashKeyIndex = (hashKeyIndex + 1 ) % this.capacity;
@@ -51,7 +52,7 @@ public class HashTable {
         }
     }
 
-    public boolean containsKey(int key){
+    public boolean containsKey(K key){
        int hashKeyIndex = hashFunction(key);
         while(hashItem[hashKeyIndex]!=null && hashItem[hashKeyIndex].getKey()!=key){
             hashKeyIndex = (hashKeyIndex + 1 ) % this.capacity;
@@ -59,21 +60,21 @@ public class HashTable {
         return hashItem[hashKeyIndex]!=null&&hashItem[hashKeyIndex].getKey()==key;
     }
 
-    public int hashFunction(int key){
-        return key%this.capacity;
+    public int hashFunction(K key){
+        return key.hashCode()%this.capacity;
     }
 
 
 }
 
-class HashItem{
-    int key;
-    int value;
-    HashItem(int key, int value){
+class HashItem<K,V>{
+    K key;
+    V value;
+    HashItem(K key, V value){
         this.key = key;
         this.value = value;
     }
-    public int getKey(){
+    public K getKey(){
         return key;
     }
 }

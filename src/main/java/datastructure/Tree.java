@@ -22,9 +22,11 @@ BFS(breadth-first search) and DFS(depth-first search) (video)
 
 */
 
+package datastructure;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Tree {
 
@@ -36,6 +38,24 @@ public class Tree {
       Node a = new Node(b,1,c);
 
       inOrder(a);
+  }
+
+  public static ArrayList<Integer> inOrderRec(Node root){
+      ArrayList<Integer> result = new ArrayList<>();
+      Stack<Node> stack = new Stack<>();
+      Node curr = root;
+      stack.push(curr);
+      result.add(curr.item);
+      while(curr!=null){
+          curr.left = curr;
+          stack.push(curr);
+          result.add(curr.item);
+      }
+      while(!stack.isEmpty()){
+          curr = stack.pop();
+
+      }
+      return null;
   }
 
   public static ArrayList<ArrayList<Integer>> levelOrder(Node head){

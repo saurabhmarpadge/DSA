@@ -1,20 +1,20 @@
+package datastructure;
 /*
-Implement a max-heap:
--insert
--heapifyUp - needed for insert
--peek - returns the max item, without removing it
--size() - return number of elements stored
--isEmpty() - returns true if heap contains no elements
--poll - returns the max item, removing it
--heapifyDown - needed for extract_max
--remove(i) - removes item at index x
- heapify - create a heap from an array of elements, needed for heap_sort
- heap_sort() - take an unsorted array and turn it into a sorted array in-place using a max heap
- note: using a min heap instead would save operations, but double the space needed (cannot do in-place).
+    Implement a max-heap:
+        -insert
+        -heapifyUp - needed for insert
+        -peek - returns the max item, without removing it
+        -size() - return number of elements stored
+        -isEmpty() - returns true if heap contains no elements
+        -poll - returns the max item, removing it
+        -heapifyDown - needed for extract_max
+        -remove(i) - removes item at index x
+        -heapify - create a heap from an array of elements, needed for heap_sort
+         heap_sort() - take an unsorted array and turn it into a sorted array in-place using a max heap
+         note: using a min heap instead would save operations, but double the space needed (cannot do in-place).
 */
 
-import java.io.*;
-import java.util.*;
+import java.util.Arrays;
 
 class Heap{
 
@@ -116,6 +116,18 @@ class Heap{
         array[size] = data;
         size++;
         heapifyUp();
+    }
+
+    public long[] heapSort(){
+        long[] temp = Arrays.copyOf(array,array.length);
+        long[] result = new long[array.length];
+        int idx=0;
+        while(!isEmpty()){
+            result[idx++]=poll();
+        }
+        array=temp;
+        size = array.length;
+        return result;
     }
 
 }
