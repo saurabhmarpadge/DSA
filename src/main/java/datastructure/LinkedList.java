@@ -1,3 +1,5 @@
+package datastructure;
+
 import java.util.NoSuchElementException;
 
 /*
@@ -11,10 +13,10 @@ value_at(index) - returns the value of the nth item (starting at 0 for first)
 -front() - get value of front item
 -back() - get value of end item
 -insert(index, value) - insert value at index, so current item at that index is pointed to by new item at index
-erase(index) - removes node at given index
+-erase(index) - removes node at given index
 value_n_from_end(n) - returns the value of the node at nth position from the end of the list
 reverse() - reverses the list
-remove_value(value) - removes the first item in the list with this value
+-remove_value(value) - removes the first item in the list with this value
 */
 public class LinkedList {
     public static void main(String[] args){
@@ -35,11 +37,6 @@ public class LinkedList {
                 this.data = data;
                 this.next = next;
             }
-            Node(int data){
-                this.prev = null;
-                this.data = data;
-                this.next = null;
-            }
         }
 
         DoublyLinkedList(){
@@ -52,24 +49,12 @@ public class LinkedList {
             return head==null;
         }
 
-        public void linkAfter(Node node, int data){
-            Node pred = node;
-            Node succ = node.next;
-            Node newNode = new Node(pred,data,succ);
-            if(succ!=null){
-                succ.prev = newNode;
-            }
-            if(succ==null){
-                this.tail = newNode;
-            }
-            pred.next = newNode;
-            this.size++;
-        }
-
         private void linkFirst(int data) {
             Node newNode = new Node(null,data,head);
             if(head==null){
                 this.tail = newNode;
+            } else {
+                head.prev = newNode;
             }
             this.head = newNode;
             this.size++;
@@ -79,8 +64,24 @@ public class LinkedList {
             Node newNode = new Node(tail,data,null);
             if(tail==null){
                 this.head = newNode;
+            } else {
+                tail.next = newNode;
             }
             this.tail = newNode;
+            this.size++;
+        }
+
+        public void linkAfter(Node node, int data){
+            Node pred = node;
+            Node succ = node.next;
+            Node newNode = new Node(pred,data,succ);
+            pred.next = newNode;
+            if(succ!=null){
+                succ.prev = newNode;
+            }
+            if(succ==null){
+                this.tail = newNode;
+            }
             this.size++;
         }
 
@@ -89,38 +90,39 @@ public class LinkedList {
             Node succ = node;
             Node newNode = new Node(pred,data,succ);
             succ.prev = newNode;
-            if(pred==null){
+            if(pred==null) {
                 this.head = newNode;
-            } else {
+            }
+            if(pred!=null){
                 pred.next = newNode;
             }
             this.size++;
         }
 
-        public int unlinkFirst(Node node){
-            Node succ = node.next;
+        public int unlinkFirst(Node firstNode){
+            Node succ = firstNode.next;
             if(succ==null){
                 this.tail=null;
             } else {
-               succ.prev = null;
+                succ.prev = null;
             }
             this.head = succ;
-            node.next = null;
+            firstNode.next = null;
             this.size--;
-            return node.data;
+            return firstNode.data;
         }
 
-        public int unlinkLast(Node node){
-            Node pred = node.prev;
+        public int unlinkLast(Node lastNode){
+            Node pred = lastNode.prev;
             if(pred==null){
                 this.head = null;
             } else {
                 pred.next = null;
             }
             this.tail = pred;
-            node.prev = null;
+            lastNode.prev = null;
             this.size--;
-            return node.data;
+            return lastNode.data;
         }
 
         public int unlink(Node node){
@@ -166,7 +168,7 @@ public class LinkedList {
         }
 
         public int removeLast() {
-            Node last = this.head;
+            Node last = this.tail;
             if(last==null){
                 throw new NoSuchElementException();
             }
@@ -189,12 +191,54 @@ public class LinkedList {
             linkLast(data);
         }
 
-        public boolean remove(int data) {
-            return false;
+        public void remove(int data) {
+            Node curr = this.head;
+            while(curr!=null){
+                if(curr.data==data){
+                    unlink(curr);
+                }
+                curr=curr.next;
+            }
         }
 
         public int get(int index) {
-            return -1;
+            if(index<0||index>size){
+                throw new NoSuchElementException();
+            }
+            Node curr = this.head;
+            while(index>0){
+                curr=curr.next;
+            }
+            return curr.data;
+        }
+
+        public int erase(int index){
+            if(index<0||index>size){
+                throw new NoSuchElementException();
+            }
+            Node curr = this.head;
+            while(index>0){
+                curr=curr.next;
+            }
+            return unlink(curr);
+        }
+
+        public int kthFromLast(int k){
+            Node p1 = this.head;
+            Node p2 = this.head;
+            while(k-->0&&p2!=null){
+                p2=p2.next;
+            }
+
+            while(p2!=null){
+                p2=p2.next;
+                p1=p1.next;
+            }
+            return p1.data;
+        }
+
+        public void reverse(){
+
         }
     }
 
@@ -249,7 +293,7 @@ public class LinkedList {
         }
 
         boolean isEmpty(){
-            return this.size()==0;
+            return this.head==null;
         }
 
         int size(){
