@@ -1,4 +1,4 @@
-package algorithms.String.bst;/*
+package algorithms.bst;/*
  Implement:
     -insertInBST // insert value into tree
     get_node_count // get count of values stored
@@ -9,12 +9,30 @@ package algorithms.String.bst;/*
     -getMin // returns the minimum value stored in the tree
     -getMax // returns the maximum value stored in the tree
     -isBinarySearchTree
-    delete_value
-    get_successor // returns next-highest value in tree after given value, -1 if none
+    -delete_value
+    -get_successor // returns next-highest value in tree after given value, -1 if none
 */
 
 public class BinarySearchTree {
     Node root;
+
+    public static void main(String[] args){
+        int[] input = {4,2,6,1,3,5,7};
+        BinarySearchTree bst = new BinarySearchTree();
+        for(int num:input){
+            bst.root = bst.insertInBST(bst.root,num);
+        }
+        bst.printValues(bst.root);
+        System.out.println();
+        bst.deleteNode(bst.root,4);
+        bst.printValues(bst.root);
+        System.out.println();
+        bst.deleteNode(bst.root,6);
+        bst.printValues(bst.root);
+        System.out.println();
+        bst.deleteNode(bst.root,3);
+        bst.printValues(bst.root);
+    }
 
     public Node insertInBST(Node root, int item){
         if(root==null){
@@ -89,7 +107,7 @@ public class BinarySearchTree {
             return;
         }
         printValues(root.left);
-        System.out.println(root.item);
+        System.out.print(root.item+" ");
         printValues(root.right);
     }
 
@@ -101,6 +119,32 @@ public class BinarySearchTree {
             return false;
         }
         return isBinarySearchTree(root.left,min,root.item) && isBinarySearchTree(root.right,root.item,max);
+    }
+
+    public Node deleteNode(Node root, int value){
+        if(root==null){
+            return root;
+        }
+
+        if(root.item==value){
+            if(root.left==null&& root.right==null){
+                return null;
+            }
+            if(root.left==null){
+                return root.right;
+            }
+            if(root.right==null) {
+                return root.left;
+            }
+            Node succ = getSuccessor(root);
+            root.item=succ.item;
+            root.right = deleteNode(root.right,succ.item);
+        } else if(root.item>value){
+            root.left = deleteNode(root.left,value);
+        } else if(root.item<value){
+            root.right = deleteNode(root.right, value);
+        }
+        return root;
     }
 }
 

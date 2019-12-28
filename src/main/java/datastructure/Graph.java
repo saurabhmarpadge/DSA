@@ -1,3 +1,4 @@
+package datastructure;
 /*
 I'll implement:
 
@@ -11,7 +12,7 @@ I'll implement:
  minimum spanning tree
 DFS-based algorithms (see Aduni videos above):
  check for cycle (needed for topological sort, since we'll check for cycle before starting)
- topological sort
+-topological sort
  count connected components in a graph
  list strongly connected components
  check for bipartite graph
