@@ -16,9 +16,9 @@ BFS(breadth-first search) and DFS(depth-first search) (video)
     DFS notes (Implement Iteratively):
         time complexity: O(n)
         space complexity: best: O(log n) - avg. height of tree worst: O(n)
-        inorder (DFS: left, self, right)
-        postorder (DFS: left, right, self)
-        preorder (DFS: self, left, right)
+        -inorder (DFS: left, self, right)
+        -postorder (DFS: left, right, self)
+        -preorder (DFS: self, left, right)
 
 */
 
@@ -31,34 +31,117 @@ import java.util.Stack;
 public class Tree {
 
   public static void main(String[] args){
-      Node c = new Node(null,3,null);
-      Node d = new Node(null,4,null);
-      Node f = new Node(null,5,null);
+      Node g = new Node(null,5,null);
+      Node h = new Node(null,7,null);
+      Node c = new Node(g,6,h);
+      Node d = new Node(null,1,null);
+      Node f = new Node(null,3,null);
       Node b = new Node(d,2,f);
-      Node a = new Node(b,1,c);
-
-      inOrder(a);
+      Node a = new Node(b,4,c);
+      ArrayList<Integer> integers = postOrderRec(a);
   }
 
   public static ArrayList<Integer> inOrderRec(Node root){
       ArrayList<Integer> result = new ArrayList<>();
       Stack<Node> stack = new Stack<>();
       Node curr = root;
-      stack.push(curr);
-      result.add(curr.item);
       while(curr!=null){
-          curr.left = curr;
           stack.push(curr);
-          result.add(curr.item);
+          curr = curr.left;
       }
       while(!stack.isEmpty()){
           curr = stack.pop();
-
+          result.add(curr.item);
+          if(curr.right!=null){
+              curr = curr.right;
+              while(curr!=null){
+                  stack.push(curr);
+                  curr = curr.left;
+              }
+          }
       }
-      return null;
+      return result;
   }
 
-  public static ArrayList<ArrayList<Integer>> levelOrder(Node head){
+    public static ArrayList<Integer> preOrderRec(Node root){
+        ArrayList<Integer> result = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        Node curr = root;
+        while(curr!=null){
+            result.add(curr.item);
+            stack.push(curr);
+            curr = curr.left;
+        }
+        while(!stack.isEmpty()){
+            curr = stack.pop();
+            if(curr.right!=null){
+                curr = curr.right;
+                while(curr!=null){
+                    result.add(curr.item);
+                    stack.push(curr);
+                    curr = curr.left;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<Integer> postOrderRec(Node root){
+        ArrayList<Integer> result = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        Stack<Node> stackPrint = new Stack<>();
+        Node curr = root;
+        stack.push(curr);
+        while(!stack.isEmpty()){
+            curr = stack.pop();
+            stackPrint.push(curr);
+            if(curr.left!=null){
+                stack.push(curr.left);
+            }
+            if(curr.right!=null){
+                stack.push(curr.right);
+            }
+        }
+        while(!stackPrint.isEmpty()){
+            result.add(stackPrint.pop().item);
+        }
+        return result;
+    }
+
+    public static ArrayList<Integer> postOrderRecApproach2(Node root){
+        ArrayList<Integer> result = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        Stack<Node> stackPrint = new Stack<>();
+        Node curr = root;
+        while(curr!=null){
+            stack.push(curr);
+            curr = curr.left;
+        }
+        while(!stack.isEmpty()){
+            curr = stack.pop();
+            if(!stackPrint.isEmpty()&&curr==stackPrint.peek()){
+                stackPrint.pop();
+                result.add(curr.item);
+                continue;
+            } else {
+                if(curr.right!=null){
+                    stack.push(curr);
+                    stackPrint.push(curr);
+                    curr = curr.right;
+                    while(curr!=null){
+                        stack.push(curr);
+                        curr = curr.left;
+                    }
+                } else {
+                    result.add(curr.item);
+                }
+            }
+
+        }
+        return result;
+    }
+
+    public static ArrayList<ArrayList<Integer>> levelOrder(Node head){
       ArrayList<ArrayList<Integer>> result = new ArrayList<>();
       Queue<Node> queue = new LinkedList<>();
       queue.offer(head);
