@@ -1,4 +1,4 @@
-package com.primenumber;
+package algorithms;
 
 import java.util.ArrayList;
 import java.util.List;

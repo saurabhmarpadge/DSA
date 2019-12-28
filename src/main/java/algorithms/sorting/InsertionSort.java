@@ -1,7 +1,9 @@
+package algorithms.sorting;
+
 import java.util.*;
 
 public class InsertionSort{
-    public static void main(){
+    public static void main(String[] args){
         InsertionSort iSort = new InsertionSort();
         List<Integer> list = Arrays.asList(4,3,5,2,6,7);
         iSort.insertionSort(list);
