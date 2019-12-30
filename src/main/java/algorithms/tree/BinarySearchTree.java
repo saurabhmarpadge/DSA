@@ -1,4 +1,4 @@
-package algorithms.bst;/*
+package algorithms.tree;/*
  Implement:
     -insertInBST // insert value into tree
     get_node_count // get count of values stored

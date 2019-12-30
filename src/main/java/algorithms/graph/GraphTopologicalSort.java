@@ -1,4 +1,4 @@
-package algorithms.topologicalsort;
+package algorithms.graph;
 
 import java.util.*;
 

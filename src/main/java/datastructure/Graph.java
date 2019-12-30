@@ -9,7 +9,7 @@ I'll implement:
  -BFS with adjacency list
  -BFS with adjacency matrix
  single-source shortest path (Dijkstra)
- minimum spanning tree
+ minimum spanning tree(prim and kruskal algorithm)
 DFS-based algorithms (see Aduni videos above):
  check for cycle (needed for topological sort, since we'll check for cycle before starting)
 -topological sort
