@@ -5,7 +5,7 @@ import java.util.*;
 public class GraphTopologicalSort {
 
     public static void main(String[] args){
-        GraphAdjMatrix graphAdjMatrix = new GraphAdjMatrix(8);
+        GraphAdjMatrixUnDir graphAdjMatrix = new GraphAdjMatrixUnDir(8);
         graphAdjMatrix.insertEdge(0,3);
         graphAdjMatrix.insertEdge(0,4);
         graphAdjMatrix.insertEdge(1,3);
@@ -24,11 +24,11 @@ public class GraphTopologicalSort {
 
 }
 
-class GraphAdjMatrix {
+class GraphAdjMatrixUnDir {
     int[][] adjMat;
     int nodes;
 
-    GraphAdjMatrix(int nodes) {
+    GraphAdjMatrixUnDir(int nodes) {
         this.nodes = nodes;
         this.adjMat = new int[nodes][nodes];
     }
