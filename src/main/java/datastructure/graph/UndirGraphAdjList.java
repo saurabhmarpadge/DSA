@@ -1,41 +1,14 @@
-package datastructure;
-/*
-I'll implement:
-
- DFS with adjacency list (recursive)
- -DFS with adjacency list (iterative with stack)
- DFS with adjacency matrix (recursive)
- -DFS with adjacency matrix (iterative with stack)
- -BFS with adjacency list
- -BFS with adjacency matrix
- single-source shortest path (Dijkstra)
- minimum spanning tree(prim and kruskal algorithm)
-DFS-based algorithms (see Aduni videos above):
- check for cycle (needed for topological sort, since we'll check for cycle before starting)
- -topological sort
- -count connected components in a graph
- list strongly connected components
- check for bipartite graph
-*/
+package datastructure.graph;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.List;
 
-public class Graph {
-
-    public static void main(String[] args){
-
-    }
-
-}
-
-
-
-class GraphAdjList{
-    LinkedList<Integer> adjList[];
+public class UndirGraphAdjList {
+    List<Integer> adjList[];
     int nodes;
-    GraphAdjList(int nodes){
+    public UndirGraphAdjList(int nodes){
         this.nodes = nodes;
         this.adjList = new LinkedList[this.nodes];
         for(int idx=0;idx<this.nodes;idx++){
@@ -91,5 +64,12 @@ class GraphAdjList{
     private int getNonVisitedNeighbour(int node) {
         return 0;
     }
-}
 
+    public int getNodes() {
+        return nodes;
+    }
+
+    public List<Integer>[] getAdjList() {
+        return adjList;
+    }
+}

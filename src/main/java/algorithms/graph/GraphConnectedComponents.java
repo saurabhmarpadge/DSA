@@ -1,11 +1,11 @@
 package algorithms.graph;
 
 
-import datastructure.GraphAdjMatrix;
+import datastructure.graph.UndirGraphAdjMatrix;
 
 public class GraphConnectedComponents {
     public static void main(String[] args) {
-        GraphAdjMatrix graph = new GraphAdjMatrix(5);
+        UndirGraphAdjMatrix graph = new UndirGraphAdjMatrix(5);
         graph.insertEdge(0,1);
         graph.insertEdge(1,2);
         graph.insertEdge(0,2);
@@ -13,7 +13,7 @@ public class GraphConnectedComponents {
         System.out.println(getNoOfConnectedComponent(graph));
     }
 
-    private static int getNoOfConnectedComponent(GraphAdjMatrix graph) {
+    private static int getNoOfConnectedComponent(UndirGraphAdjMatrix graph) {
         boolean[] visited = new boolean[graph.getNodes()];
         int count=0;
         for(int nodeIdx=0;nodeIdx<graph.getNodes();nodeIdx++){
@@ -25,7 +25,7 @@ public class GraphConnectedComponents {
         return count;
     }
 
-    private static void dfs(int node, GraphAdjMatrix graph, boolean[] visited) {
+    private static void dfs(int node, UndirGraphAdjMatrix graph, boolean[] visited) {
         if(!visited[node]){
             visited[node]=true;
             int neighbour = graph.getNonVisitedNeighbour(node,visited);

@@ -1,13 +1,13 @@
-package datastructure;
+package datastructure.graph;
 
 import java.util.Queue;
 import java.util.Stack;
 import java.util.LinkedList;
 
-public class GraphAdjMatrix{
+public class UndirGraphAdjMatrix {
     int[][] adjMat;
     int nodes;
-    public GraphAdjMatrix(int nodes){
+    public UndirGraphAdjMatrix(int nodes){
         this.nodes = nodes;
         this.adjMat = new int[nodes][nodes];
     }
