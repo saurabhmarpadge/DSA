@@ -1,5 +1,6 @@
 package algorithms.graph;
 
+import algorithms.graph.util.Edge;
 import datastructure.DisjointSet;
 import datastructure.graph.UndirGraphAdjList;
 
@@ -29,12 +30,12 @@ public class CycleDetection {
     private boolean isCycle(List<Edge> allEdges, int nodes) {
         DisjointSet disjointSet = new DisjointSet(nodes);
         for(Edge edge:allEdges){
-            int sVer = disjointSet.find(edge.s);
-            int dVer = disjointSet.find(edge.d);
+            int sVer = disjointSet.find(edge.getSource());
+            int dVer = disjointSet.find(edge.getDestination());
             if(sVer==dVer){
                 return true;
             } else {
-                disjointSet.union(edge.s,edge.d);
+                disjointSet.union(edge.getSource(),edge.getDestination());
             }
         }
         return false;
@@ -62,12 +63,3 @@ public class CycleDetection {
     }
 }
 
-class Edge {
-    int s;
-    int d;
-
-    public Edge(int s, int d) {
-        this.s=s;
-        this.d=d;
-    }
-}
