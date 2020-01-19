@@ -1,7 +1,7 @@
 package algorithms.graph.shortestpath;
 
 import algorithms.graph.util.EdgeWeighted;
-import algorithms.graph.util.UnDirGraphWeightedAdjList;
+import algorithms.graph.util.UnDirWeightedGraphAdjList;
 import javafx.util.Pair;
 
 import java.util.Comparator;
@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 
 public class GraphDijkstra {
     public static void main(String[] args) {
-        UnDirGraphWeightedAdjList graph = new UnDirGraphWeightedAdjList(5);
+        UnDirWeightedGraphAdjList graph = new UnDirWeightedGraphAdjList(5);
         graph.addEdge(1,2,4);
         graph.addEdge(2,4,3);
         graph.addEdge(1,3,1);
@@ -21,7 +21,7 @@ public class GraphDijkstra {
         }
     }
 
-    private static int[] getShortestPath(UnDirGraphWeightedAdjList graph) {
+    private static int[] getShortestPath(UnDirWeightedGraphAdjList graph) {
         int[] distances = new int[graph.getNoOfVertices()];
         boolean[] SPT = new boolean[graph.getNoOfVertices()];
         for(int idx=0;idx<distances.length;idx++){

@@ -1,7 +1,7 @@
 package algorithms.graph.mst;
 
 import algorithms.graph.util.EdgeWeighted;
-import algorithms.graph.util.UnDirGraphWeightedAdjList;
+import algorithms.graph.util.UnDirWeightedGraphAdjList;
 import javafx.util.Pair;
 
 import java.util.Comparator;
@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 
 public class GraphPrim {
     public static void main(String[] args) {
-        UnDirGraphWeightedAdjList graph = new UnDirGraphWeightedAdjList(5);
+        UnDirWeightedGraphAdjList graph = new UnDirWeightedGraphAdjList(5);
         graph.addEdge(1,2,4);
         graph.addEdge(2,4,3);
         graph.addEdge(1,3,1);
@@ -22,7 +22,7 @@ public class GraphPrim {
         }
     }
 
-    private static ResultSet[] getMST(UnDirGraphWeightedAdjList graph) {
+    private static ResultSet[] getMST(UnDirWeightedGraphAdjList graph) {
         ResultSet[] resultSet = new ResultSet[graph.getNoOfVertices()];
         boolean[] mst = new boolean[graph.getNoOfVertices()];
         for(int idx=0;idx<resultSet.length;idx++){

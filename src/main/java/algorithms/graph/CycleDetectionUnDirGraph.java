@@ -7,9 +7,9 @@ import datastructure.graph.UndirGraphAdjList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CycleDetection {
+public class CycleDetectionUnDirGraph {
     public static void main(String[] args) {
-        CycleDetection undirectedGraphCycle =new CycleDetection();
+        CycleDetectionUnDirGraph cycleDetection =new CycleDetectionUnDirGraph();
         UndirGraphAdjList undirectedGraphAdjList = new UndirGraphAdjList(6);
         undirectedGraphAdjList.insertEdge(0,1);
         undirectedGraphAdjList.insertEdge(1,2);
@@ -17,14 +17,14 @@ public class CycleDetection {
         undirectedGraphAdjList.insertEdge(3,4);
         undirectedGraphAdjList.insertEdge(4,5);
         undirectedGraphAdjList.insertEdge(5,2);
-        System.out.println(undirectedGraphCycle.isCycle(undirectedGraphAdjList));
+        System.out.println(cycleDetection.isCycle(undirectedGraphAdjList));
         List<Edge> allEdges = new ArrayList<>();
         allEdges.add(new Edge(0,1));
         allEdges.add(new Edge(0,2));
         allEdges.add(new Edge(1,3));
         allEdges.add(new Edge(2,3));
         allEdges.add(new Edge(3,4));
-        System.out.println(undirectedGraphCycle.isCycle(allEdges,5));
+        System.out.println(cycleDetection.isCycle(allEdges,5));
     }
 
     private boolean isCycle(List<Edge> allEdges, int nodes) {
@@ -42,8 +42,8 @@ public class CycleDetection {
     }
 
     public boolean isCycle(UndirGraphAdjList adjList){
-        boolean[] visited = new boolean[adjList.getNodes()];
-        for(int idx=0;idx<adjList.getNodes();idx++){
+        boolean[] visited = new boolean[adjList.getNoOfVertices()];
+        for(int idx = 0; idx<adjList.getNoOfVertices(); idx++){
             if(!visited[idx]&&isCycleUtil(idx,visited,-1,adjList)){
                 return true;
             }
@@ -53,8 +53,8 @@ public class CycleDetection {
 
     private boolean isCycleUtil(int currVertex, boolean[] visited, int parent, UndirGraphAdjList adjList) {
         visited[currVertex]=true;
-        for(int idx=0;idx<adjList.getAdjList()[idx].size();idx++){
-            int vertex = adjList.getAdjList()[idx].get(idx);
+        for(int idx=0;idx<adjList.getAdjList()[currVertex].size();idx++){
+            int vertex = adjList.getAdjList()[currVertex].get(idx);
             if(vertex!=parent&&(visited[vertex]||isCycleUtil(vertex,visited,currVertex,adjList))){
                 return true;
             }

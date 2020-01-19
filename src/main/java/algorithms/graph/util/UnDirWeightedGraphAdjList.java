@@ -2,7 +2,7 @@ package algorithms.graph.util;
 
 import java.util.LinkedList;
 
-public class UnDirGraphWeightedAdjList {
+public class UnDirWeightedGraphAdjList {
     LinkedList<EdgeWeighted> verticeList[];
     int noOfVertices;
 
@@ -14,7 +14,7 @@ public class UnDirGraphWeightedAdjList {
         return noOfVertices;
     }
 
-    public UnDirGraphWeightedAdjList(int noOfVertices){
+    public UnDirWeightedGraphAdjList(int noOfVertices){
         this.noOfVertices =noOfVertices+1;
         verticeList = new LinkedList[this.noOfVertices];
         for(int idx=0;idx<this.noOfVertices;idx++){
