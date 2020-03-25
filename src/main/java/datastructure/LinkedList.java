@@ -76,11 +76,10 @@ public class LinkedList {
             Node succ = node.next;
             Node newNode = new Node(pred,data,succ);
             pred.next = newNode;
-            if(succ!=null){
-                succ.prev = newNode;
-            }
             if(succ==null){
                 this.tail = newNode;
+            } else {
+                succ.prev = newNode;
             }
             this.size++;
         }
@@ -92,8 +91,7 @@ public class LinkedList {
             succ.prev = newNode;
             if(pred==null) {
                 this.head = newNode;
-            }
-            if(pred!=null){
+            } else {
                 pred.next = newNode;
             }
             this.size++;
@@ -193,11 +191,13 @@ public class LinkedList {
 
         public void remove(int data) {
             Node curr = this.head;
+            Node succ = curr.next;
             while(curr!=null){
                 if(curr.data==data){
+                    succ = curr.next;
                     unlink(curr);
                 }
-                curr=curr.next;
+                curr=succ;
             }
         }
 
@@ -206,7 +206,7 @@ public class LinkedList {
                 throw new NoSuchElementException();
             }
             Node curr = this.head;
-            while(index>0){
+            while(index-->0){
                 curr=curr.next;
             }
             return curr.data;
@@ -217,7 +217,7 @@ public class LinkedList {
                 throw new NoSuchElementException();
             }
             Node curr = this.head;
-            while(index>0){
+            while(index-->0){
                 curr=curr.next;
             }
             return unlink(curr);
@@ -387,22 +387,16 @@ public class LinkedList {
         }
 
         void removeFirst(){
-            if(head==null){
-                return;
-            }
-            if(head.next==null){
-                head = null;
+            if(head==null||head.next==null){
+                head=null;
                 return;
             }
             head = head.next;
         }
 
         void revomeLast(){
-            if(head==null){
-                return;
-            }
-            if(head.next==null){
-                head = null;
+            if(head==null||head.next==null){
+                head=null;
                 return;
             }
             Node prev = null;

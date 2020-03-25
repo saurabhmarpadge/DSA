@@ -1,4 +1,4 @@
-package datastructure;/*
+/*
 -size() - number of items
 -capacity() - number of items it can hold
 -is_empty()
@@ -14,6 +14,7 @@ package datastructure;/*
     when you reach capacity, resize to double the size
     when popping an item, if size is 1/4 of capacity, resize to half
 */
+package datastructure;
 
 import java.util.Arrays;
 
@@ -78,6 +79,7 @@ public class DynamicArray<T> {
         rangeCheck(index);
         T result = (T)baseArray[index];
         System.arraycopy(baseArray,index+1,baseArray,index,currentCapacity-index-1);
+        currentCapacity--;
         return result;
     }
 
