@@ -97,7 +97,7 @@ class Node<T>{
               rear = 0;
               qArray[rear]=item;
           } else {
-              rear = (rear%this.capacity+1%this.capacity)%this.capacity;
+              rear = (rear+1)%this.capacity;
               qArray[rear]=item;
           }
           size++;
@@ -108,7 +108,7 @@ class Node<T>{
               throw new Exception();
           }
           T result = (T) qArray[front];
-          front = (front%this.capacity+1%this.capacity)%this.capacity;
+          front = (front+1)%this.capacity;
           size--;
           return result;
       }

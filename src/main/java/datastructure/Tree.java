@@ -38,10 +38,10 @@ public class Tree {
       Node f = new Node(null,3,null);
       Node b = new Node(d,2,f);
       Node a = new Node(b,4,c);
-      ArrayList<Integer> integers = postOrderRec(a);
+      ArrayList<Integer> integers = postOrderItr(a);
   }
 
-  public static ArrayList<Integer> inOrderRec(Node root){
+  public static ArrayList<Integer> inOrderItr(Node root){
       ArrayList<Integer> result = new ArrayList<>();
       Stack<Node> stack = new Stack<>();
       Node curr = root;
@@ -63,7 +63,7 @@ public class Tree {
       return result;
   }
 
-    public static ArrayList<Integer> preOrderRec(Node root){
+    public static ArrayList<Integer> preOrderItr(Node root){
         ArrayList<Integer> result = new ArrayList<>();
         Stack<Node> stack = new Stack<>();
         Node curr = root;
@@ -86,7 +86,7 @@ public class Tree {
         return result;
     }
 
-    public static ArrayList<Integer> postOrderRec(Node root){
+    public static ArrayList<Integer> postOrderItr(Node root){
         ArrayList<Integer> result = new ArrayList<>();
         Stack<Node> stack = new Stack<>();
         Stack<Node> stackPrint = new Stack<>();
@@ -108,7 +108,7 @@ public class Tree {
         return result;
     }
 
-    public static ArrayList<Integer> postOrderRecApproach2(Node root){
+    public static ArrayList<Integer> postOrderItrApproach2(Node root){
         ArrayList<Integer> result = new ArrayList<>();
         Stack<Node> stack = new Stack<>();
         Stack<Node> stackPrint = new Stack<>();
@@ -136,7 +136,6 @@ public class Tree {
                     result.add(curr.item);
                 }
             }
-
         }
         return result;
     }

@@ -1,8 +1,6 @@
 package datastructure.graph;
 
-import java.util.Queue;
-import java.util.Stack;
-import java.util.LinkedList;
+import java.util.*;
 
 public class UndirGraphAdjMatrix {
     int[][] adjMat;
@@ -34,15 +32,21 @@ public class UndirGraphAdjMatrix {
             int node = queue.poll();
             if(!visited[node]){
                 visited[node] = true;
-                for(int neighbours:getNonVisitedNeighbours(node)){
+                for(int neighbours:getNonVisitedNeighbours(node,visited)){
                     queue.add(neighbours);
                 }
             }
         }
     }
 
-    private int[] getNonVisitedNeighbours(int node) {
-        return new int[0];
+    private List<Integer> getNonVisitedNeighbours(int node, boolean[] visited) {
+        List<Integer> nonVisitedNodes = new ArrayList<>();
+        for(int idx=0;idx<adjMat[0].length;idx++){
+            if(!visited[idx]&&adjMat[node][idx]==1){
+                nonVisitedNodes.add(idx);
+            }
+        }
+        return nonVisitedNodes;
     }
 
     public void dfsTravserse(){

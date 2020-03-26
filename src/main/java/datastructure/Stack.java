@@ -17,6 +17,8 @@
 
 package datastructure;
 
+import java.util.EmptyStackException;
+
 public class Stack {
   public static void main(String[] args){
 
@@ -39,9 +41,9 @@ public class Stack {
             return size;
         }
 
-        public T peek() throws Exception{
+        public T peek() throws EmptyStackException{
             if(isEmpty()){
-                throw new Exception();
+                throw new EmptyStackException();
             }
             return (T) sArray[top];
         }
@@ -50,17 +52,17 @@ public class Stack {
             return top+1==size;
         }
 
-        public T pop()throws Exception{
+        public T pop()throws EmptyStackException{
             if(isEmpty()){
-                throw new Exception();
+                throw new EmptyStackException();
             }
             return (T) sArray[top--];
         }
 
 
-        public void push(int item)throws Exception{
+        public void push(int item)throws StackOverflowError{
             if(isFull()){
-                throw new Exception();
+                throw new StackOverflowError();
             }
             sArray[top++]=item;
         }
@@ -93,9 +95,9 @@ public class Stack {
             return size;
         }
 
-        public T peek() throws Exception{
+        public T peek() throws EmptyStackException{
             if(isEmpty()){
-                throw new Exception();
+                throw new EmptyStackException();
             }
             return (T) head.item;
         }
@@ -104,20 +106,21 @@ public class Stack {
             return size==capacity;
         }
 
-        public T pop() throws Exception{
+        public T pop() throws EmptyStackException{
             if(isEmpty()){
-                throw new Exception();
+                throw new EmptyStackException();
             }
             Node node = head;
             head = head.next;
+            node.next=null;
             size--;
             return (T) node.item;
         }
 
 
-        public void push(T item) throws Exception{
+        public void push(T item) throws StackOverflowError{
             if(isFull()){
-                throw new Exception();
+                throw new StackOverflowError();
             }
             Node node = new Node(item);
             node.next = head;
