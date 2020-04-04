@@ -4,7 +4,7 @@ import java.util.*;
 
 public class QuickSort {
     public static void main(String[] args){
-        List<Integer> list = Arrays.asList(5,4,3,2,1);
+        List<Integer> list = new ArrayList<>(Arrays.asList(5,4,3,2,1));
         quickSort(list,0,list.size()-1);
         list.forEach(System.out::println);
     }
@@ -17,6 +17,7 @@ public class QuickSort {
         quickSort(list,low,pivot-1);
         quickSort(list,pivot+1,high);
     }
+
     public static int partition(List<Integer> list,int low, int high){
         int mid = low + ((high-low)>>1);
         while(low<high){

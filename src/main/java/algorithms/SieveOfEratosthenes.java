@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SieveOfEratosthenes {
-    public static final int MAX_LIMIT = 2000000;
+    public static final int MAX_LIMIT =  2000000;
     public static void main(String[] args){
 
         List<Integer> primes = sieveOfEratosthenes();
