@@ -1,0 +1,4 @@
+PriorityQueue<Integer> queue = new PriorityQueue<>((o1,o2)->hm.get(o1)-hm.get(o2));
+
+Arrays.copyOf(T[] original, int newLength);
+System.arraycopy(Object src,  int  srcPos, Object dest, int destPos, int length);

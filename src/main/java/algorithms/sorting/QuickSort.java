@@ -4,7 +4,7 @@ import java.util.*;
 
 public class QuickSort {
     public static void main(String[] args){
-        List<Integer> list = new ArrayList<>(Arrays.asList(5,4,3,2,1));
+        List<Integer> list = new ArrayList<>(Arrays.asList(3,2,1,5,6,4));
         quickSort(list,0,list.size()-1);
         list.forEach(System.out::println);
     }
