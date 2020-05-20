@@ -1,4 +1,4 @@
-package algorithms.graph;
+package algorithms.graph.cycle_detection;
 
 import algorithms.graph.util.Edge;
 import datastructure.DisjointSet;

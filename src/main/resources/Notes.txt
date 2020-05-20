@@ -2,3 +2,21 @@ PriorityQueue<Integer> queue = new PriorityQueue<>((o1,o2)->hm.get(o1)-hm.get(o2
 
 Arrays.copyOf(T[] original, int newLength);
 System.arraycopy(Object src,  int  srcPos, Object dest, int destPos, int length);
+
+ArrayList<int[]> result = new ArrayList<>();
+return result.toArray(new int[result.size()][2]);
+
+paragraph.replaceAll("[!?',;.]*","");
+
+Condition for Overlap:
+int cs = Math.max(list.get(idx).start,start);
+int ce = Math.min(list.get(idx).end,end);
+if(ce>cs){
+    return false;
+}
+
+OR
+
+TreeMap<Integer,Integer> calender;
+Integer pred = calender.floorKey(start);
+Integer succ = calender.ceilingKey(start);
