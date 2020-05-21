@@ -39,6 +39,7 @@ public class Tree {
       Node b = new Node(d,2,f);
       Node a = new Node(b,4,c);
       ArrayList<Integer> integers = postOrderItr(a);
+      System.out.println(integers.toString());
   }
 
   public static ArrayList<Integer> inOrderItr(Node root){

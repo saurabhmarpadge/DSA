@@ -57,10 +57,10 @@ public class BinarySearchTree {
     }
 
     public Node getSuccessor(Node root){
-        if(root==null||root.right==null){
+        if(root==null){
             return root;
         }
-        Node curr = root.right;
+        Node curr = root;
         while(curr.left!=null){
             curr = curr.left;
         }
@@ -69,7 +69,7 @@ public class BinarySearchTree {
 
     public Node searchInBST(Node root, int item){
        if(root==null){
-           return null;
+           return root;
        }
        if(root.item>item){
            return searchInBST(root.left,item);
@@ -126,7 +126,11 @@ public class BinarySearchTree {
             return root;
         }
 
-        if(root.item==value){
+        if(root.item>value){
+            root.left = deleteNode(root.left,value);
+        } else if(root.item<value){
+            root.right = deleteNode(root.right, value);
+        } else {
             if(root.left==null&& root.right==null){
                 return null;
             }
@@ -136,13 +140,9 @@ public class BinarySearchTree {
             if(root.right==null) {
                 return root.left;
             }
-            Node succ = getSuccessor(root);
+            Node succ = getSuccessor(root.right);
             root.item=succ.item;
             root.right = deleteNode(root.right,succ.item);
-        } else if(root.item>value){
-            root.left = deleteNode(root.left,value);
-        } else if(root.item<value){
-            root.right = deleteNode(root.right, value);
         }
         return root;
     }
