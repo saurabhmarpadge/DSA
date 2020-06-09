@@ -19,14 +19,14 @@ public class Knapsack {
     }
 
     public int knapsackZeroOneRec(int sackSize, int[] values, int[] weights){
-        return knapsackZeroOneRec(sackSize,values,weights,weights.length-1);
+        return knapsackZeroOneRec(sackSize,values,weights,weights.length);
     }
     public int knapsackZeroOneRec(int sackSize, int[] values, int[] weights, int itemNo){
-        if(itemNo<0||sackSize<=0){
+        if(itemNo==0||sackSize==0){
             return 0;
         }
-        if(sackSize>=weights[itemNo]){
-            return Math.max(values[itemNo]+knapsackZeroOneRec(sackSize-weights[itemNo],values,weights,itemNo-1),
+        if(weights[itemNo-1]<=sackSize){
+            return Math.max(values[itemNo-1]+knapsackZeroOneRec(sackSize-weights[itemNo-1],values,weights,itemNo-1),
                             knapsackZeroOneRec(sackSize,values,weights,itemNo-1));
         }
         return knapsackZeroOneRec(sackSize,values,weights,itemNo-1);
@@ -37,31 +37,33 @@ public class Knapsack {
         for(int[] mm:memo){
             Arrays.fill(mm,-1);
         }
-        return knapsackZeroOneRecMemo(sackSize,values,weights,weights.length-1,memo);
+        return knapsackZeroOneRecMemo(sackSize,values,weights,weights.length,memo);
     }
 
     public int knapsackZeroOneRecMemo(int sackSize, int[] values, int[] weights, int itemNo, int[][] memo){
-        if(itemNo<0||sackSize==0){
+        if(itemNo==0||sackSize==0){
             return 0;
         }
         if(memo[sackSize][itemNo]!=-1){
             return memo[sackSize][itemNo];
         }
 
-        int maximum=Integer.MIN_VALUE;
-        if(sackSize>=weights[itemNo]){
-            maximum = Math.max( values[itemNo] + knapsackZeroOneRecMemo(sackSize-weights[itemNo],values,weights,itemNo-1,memo),
+        int maximum;
+        if(weights[itemNo-1]<=sackSize){
+            maximum = Math.max( values[itemNo-1] + knapsackZeroOneRecMemo(sackSize-weights[itemNo-1],values,weights,itemNo-1,memo),
                     knapsackZeroOneRecMemo(sackSize,values,weights,itemNo-1,memo));
+        } else {
+            maximum = knapsackZeroOneRecMemo(sackSize,values,weights,itemNo-1,memo);
         }
-        memo[sackSize][itemNo] = Math.max(maximum,knapsackZeroOneRecMemo(sackSize,values,weights,itemNo-1,memo));
-        return memo[sackSize][itemNo];
+        memo[sackSize][itemNo] = maximum;
+        return maximum;
     }
 
     public int knapsackZeroOneTabulation(int sackSize, int[] values, int[] weights){
         int[][] memo = new int[sackSize+1][weights.length+1];
         for(int rS=1;rS<memo.length;rS++){
             for(int itemIdx=1;itemIdx<memo[0].length;itemIdx++){
-                if(rS-weights[itemIdx-1]>=0){
+                if(weights[itemIdx-1]<=rS){
                     memo[rS][itemIdx] = Math.max(values[itemIdx-1]+memo[rS-weights[itemIdx-1]][itemIdx-1],
                                                 memo[rS][itemIdx-1]);
                 } else {
@@ -73,15 +75,15 @@ public class Knapsack {
     }
 
     public int knapsackUnboundedRec(int sackSize, int[] values, int[] weights){
-        return knapsackUnboundedRec(sackSize,values,weights,weights.length-1);
+        return knapsackUnboundedRec(sackSize,values,weights,weights.length);
     }
 
     public int knapsackUnboundedRec(int sackSize, int[] values, int[] weights, int itemNo){
-        if(itemNo<0||sackSize<=0){
+        if(itemNo==0||sackSize==0){
             return 0;
         }
-        if(sackSize>=weights[itemNo]){
-            return Math.max(values[itemNo]+knapsackUnboundedRec(sackSize-weights[itemNo],values,weights,itemNo),
+        if(weights[itemNo-1]<=sackSize){
+            return Math.max(values[itemNo-1]+knapsackUnboundedRec(sackSize-weights[itemNo-1],values,weights,itemNo),
                     knapsackUnboundedRec(sackSize,values,weights,itemNo-1));
         }
         return knapsackUnboundedRec(sackSize,values,weights,itemNo-1);
@@ -92,22 +94,22 @@ public class Knapsack {
         for(int[] mm:memo){
             Arrays.fill(mm,-1);
         }
-        return knapsackUnboundedRecMemo(sackSize,values,weights,weights.length-1,memo);
+        return knapsackUnboundedRecMemo(sackSize,values,weights,weights.length,memo);
     }
 
     public int knapsackUnboundedRecMemo(int sackSize, int[] values, int[] weights, int itemNo, int[][] memo){
-        if(itemNo<0||sackSize<=0){
+        if(itemNo==0||sackSize==0){
             return 0;
         }
         if(memo[sackSize][itemNo]!=-1){
             return memo[sackSize][itemNo];
         }
-        int maximum = Integer.MIN_VALUE;
-        if(sackSize>=weights[itemNo]){
-            maximum = Math.max(values[itemNo]+knapsackUnboundedRecMemo(sackSize-weights[itemNo],values,weights,itemNo,memo),
+        int maximum;
+        if(weights[itemNo-1]<=sackSize){
+            maximum = Math.max(values[itemNo-1]+knapsackUnboundedRecMemo(sackSize-weights[itemNo-1],values,weights,itemNo,memo),
                     knapsackUnboundedRecMemo(sackSize,values,weights,itemNo-1,memo));
         } else {
-            maximum = Math.max(maximum,knapsackUnboundedRecMemo(sackSize,values,weights,itemNo-1,memo));
+            maximum = knapsackUnboundedRecMemo(sackSize,values,weights,itemNo-1,memo);
         }
         memo[sackSize][itemNo]=maximum;
         return maximum;
@@ -117,7 +119,7 @@ public class Knapsack {
         int[][] memo = new int[sackSize+1][weights.length+1];
         for(int rS=1;rS<=sackSize;rS++){
             for(int itemIdx=1;itemIdx<=weights.length;itemIdx++){
-                if(rS-weights[itemIdx-1]>=0){
+                if(weights[itemIdx-1]<=rS){
                     memo[rS][itemIdx] = Math.max(values[itemIdx-1]+memo[rS-weights[itemIdx-1]][itemIdx],
                                                 memo[rS][itemIdx-1]);
                 } else {
