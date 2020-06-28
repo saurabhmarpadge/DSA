@@ -1,6 +1,6 @@
 package algorithms.graph.mst;
 
-import datastructure.DisjointSet;
+import datastructure.disjointset.DisjointSet;
 
 import java.util.ArrayList;
 import java.util.Comparator;

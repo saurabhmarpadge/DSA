@@ -1,7 +1,7 @@
 package algorithms.graph.cycle_detection;
 
 import algorithms.graph.util.Edge;
-import datastructure.DisjointSet;
+import datastructure.disjointset.DisjointSet;
 import datastructure.graph.UndirGraphAdjList;
 
 import java.util.ArrayList;
