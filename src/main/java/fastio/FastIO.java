@@ -2,7 +2,7 @@ package fastio;
 
 import java.io.*;
 import java.util.*;
-public class Template
+public class FastIO
 {
     static PrintWriter out=new PrintWriter((System.out));
     public static void main(String args[])throws IOException

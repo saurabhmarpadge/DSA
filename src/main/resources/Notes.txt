@@ -6,6 +6,11 @@ System.arraycopy(Object src,  int  srcPos, Object dest, int destPos, int length)
 ArrayList<int[]> result = new ArrayList<>();
 return result.toArray(new int[result.size()][2]);
 
+int[] nums = new int[5];
+Print Array -> Arrays.toString(nums);
+
+Arrays.toString(list.toArray())
+
 paragraph.replaceAll("[!?',;.]*","");
 
 Condition for Overlap:

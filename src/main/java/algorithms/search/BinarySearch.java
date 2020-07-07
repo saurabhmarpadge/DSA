@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.search;
 /*
   Implement:
     -Binary search (on sorted array of integers)

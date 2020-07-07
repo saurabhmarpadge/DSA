@@ -36,7 +36,6 @@ public class RabinKarpAlgorithm {
         return result;
     }
 
-
     private long getHashValue(String pattern, long[] power) {
         long hashValue = 0;
         int pIdx = pattern.length()-1;
