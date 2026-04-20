@@ -1,2 +1,2 @@
 # DSA
-Basic Data Structures and algorithms From Scratch
+Basic Data Structures and algorithms From Scratch.
